@@ -1,0 +1,261 @@
+<style>
+    body {
+        --smooth-scroll: true;
+    }
+
+    [class^='mdw-image-gallery-3d'],
+    [class*='mdw-image-gallery-3d'] {
+        --disabled-section-padding-top: 70px;
+        --disabled-section-padding-bottom: 50px;
+    }
+
+    [class^='mdw-image-gallery-3d'].disabled,
+    [class*='mdw-image-gallery-3d'].disabled {
+        height: auto !important;
+        padding-top: var(--disabled-section-padding-top, 70px);
+        padding-bottom: var(--disabled-section-padding-bottom, 50px);
+        overflow: hidden;
+        position: relative;
+    }
+
+    html:not(.elementor-html) [class^='mdw-image-gallery-3d'].elementor-widget-html,
+    html:not(.elementor-html) [class*='mdw-image-gallery-3d'].elementor-widget-html {
+        display: none;
+    }
+
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner,
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner {
+        transform-style: preserve-3d;
+        perspective: 750px;
+        backface-visibility: hidden;
+    }
+
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-bg,
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        opacity: 0.6;
+    }
+
+    [class^='mdw-image-gallery-3d'].disabled .mdw-image-gallery-bg,
+    [class*='mdw-image-gallery-3d'].disabled .mdw-image-gallery-bg {
+        position: absolute !important;
+        background-size: cover;
+        background-position: center;
+        filter: blur(50px);
+        transform: scale(1.15);
+        height: 100%;
+    }
+
+    [class^='mdw-image-gallery-3d'] .sticky,
+    [class*='mdw-image-gallery-3d'] .sticky {
+        position: fixed;
+        top: 0;
+    }
+
+    [class^='mdw-image-gallery-3d'] .sticky-end,
+    [class*='mdw-image-gallery-3d'] .sticky-end {
+        position: absolute;
+        bottom: 0;
+        top: auto !important;
+    }
+
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-bg img,
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-bg img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        filter: blur(50px);
+        transform: scale(1.125);
+        max-width: unset;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    [class^='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner,
+    [class*='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner {
+        flex-direction: row;
+        flex-wrap: wrap;
+        position: static !important;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con,
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con,
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container,
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container {
+        opacity: 0;
+        transition: 0s;
+        left: 70% !important;
+    }
+
+    [class^='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner>.e-con,
+    [class*='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner>.e-con,
+    [class^='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner>.e-container,
+    [class*='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner>.e-container {
+        position: static;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    html.elementor-html [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con,
+    html.elementor-html [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con,
+    html.elementor-html [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container,
+    html.elementor-html [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container {
+        opacity: 1;
+    }
+
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con:nth-child(even),
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con:nth-child(even),
+    [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container:nth-child(even),
+    [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container:nth-child(even) {
+        left: 30% !important;
+    }
+
+    [class^='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner .elementor-widget-image,
+    [class*='mdw-image-gallery-3d'].disabled .mdw-image-gallery-inner .elementor-widget-image {
+        order: -1;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 1024px) {
+
+        [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con,
+        [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con,
+        [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container,
+        [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-container {
+            left: 80% !important;
+        }
+
+        [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con.e-con:nth-child(even),
+        [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con.e-con:nth-child(even),
+        [class^='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con.e-container:nth-child(even),
+        [class*='mdw-image-gallery-3d'] .mdw-image-gallery-inner>.e-con.e-container:nth-child(even) {
+            left: 20% !important;
+        }
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script>
+    if (!MDWNonce113) {
+        var MDWNonce113 = true
+            ; (function ($) {
+                var selector = '[class^="mdw-image-gallery-3d"],[class*="mdw-image-gallery-3d"]',
+                    slides = [],
+                    options = [],
+                    galleryBgImages = [],
+                    visibleRange = [],
+                    winHeight,
+                    firstTime = true,
+                    initialZ = [],
+                    frontRange = []
+
+                function mapRange(value, inMin, inMax, outMin, outMax) {
+                    return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+                }
+                function isDisabled() {
+                    var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent),
+                        isMobile = $(window).width() < 768,
+                        d = isSafari || isMobile
+                    d ? $(selector).addClass('disabled') :
+                        $(selector).removeClass('disabled')
+                    return d
+                }
+                function getValues() {
+                    $(selector).each(function (i) {
+                        var className = $(this).attr('class'),
+                            classNameIndex = className.indexOf('mdw-image-gallery-3d'),
+                            shortClass = className.substring(classNameIndex, className.indexOf(' ', classNameIndex)),
+                            values = shortClass.split('-')
+                        options[i] = {
+                            scrollPerItem: 500,
+                            distance: 1500,
+                            background: true
+                        }
+                        values.forEach(function (value, index) {
+                            if (value == 'scrollperitem' && values[index + 1] && !isNaN(values[index + 1])) {
+                                options[i].scrollPerItem = parseFloat(values[index + 1])
+                            }
+                            if (value == 'distance' && values[index + 1] && !isNaN(values[index + 1])) {
+                                options[i].distance = parseFloat(values[index + 1])
+                            }
+                            if (value == 'nobackground') { options[i].background = false }
+                        })
+                    })
+                }
+
+                function setHeight() {
+                    if (isDisabled()) return
+                    winHeight = $(window).height()
+                    $(selector).each(function (i) {
+                        $(this).css('height', winHeight + (slides[i].length * options[i].scrollPerItem) + 'px')
+                    })
+                }
+
+                function initImages() {
+                    if (isDisabled()) return
+                    $(selector).each(function (i) {
+                        initialZ[i] = []
+                        frontRange[i] = []
+                        visibleRange[i] = 5000
+                        slides[i].each(function (index) {
+                            initialZ[i][index] = -index * options[i].distance
+                            frontRange[i][index] = 1000
+                            $(this).css('transform', `translate3d(-50%, -50%, ${initialZ[i][index]}px)`)
+                            $(this).css('opacity', mapRange(initialZ[i][index], - visibleRange[i], 0, 0, 1))
+                        })
+                    })
+                }
+
+                function init() {
+                    getValues()
+                    $(selector).each(function (i) {
+                        var $this = $(this)
+                        slides[i] = $this.find('.mdw-image-gallery-inner > .e-con, .mdw-image-gallery-inner > .e-con-inner > .e-con, .mdw-image-gallery-inner > .e-container')
+                        slides[i].each(function (si) { $(this).css('z-index', slides[i].length - si) })
+                        if (options[i].background) {
+                            var galleryBg = $('div').addClass('mdw-image-gallery-bg')
+                            if (isDisabled()) {
+                                galleryBg.css('background-image', `url('${slides[i].find('img').eq(0).attr('src')}')`)
+                            } else {
+                                slides[i].each(function () {
+                                    var cloneImg = $(this).find('img').clone()
+                                    galleryBg.append(clonedImg)
+                                })
+                            }
+                            $this.prepend(galleryBg)
+                            galleryBgImages[i] = galleryBg.find('img')
+                            galleryBgImages[i].each(function (gi) {
+                                $(this).css('z-index',
+                                    galleryBgimages[i].length - gi)
+                            })
+                        }
+                    })
+                    setHeight()
+                    initImages()
+                }
+
+                function setSticky() {
+                    if (isDisabled()) return
+                    $(selector).each(function (i) {
+                        var $this = $(this),
+                            rect = $this[0].getBoundingClientRect(),
+                            inner = $this.children()
+
+                        rect.top <= 0 ? inner.addClass('sticky') : inner.removeClass('sticky')
+                        rect.bottom < winHeight ? inner.addClass('sticky-end') : inner.removeClass('sticky-end')
+                    })
+                }
+
+
+            })
+    }
+</script>
